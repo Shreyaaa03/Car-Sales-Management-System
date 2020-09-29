@@ -89,7 +89,7 @@ public class Server extends Thread{
         System.out.println("Port: "+ port+ " -- Purchase:");
         String id = dataInputStream.readUTF();
         int modelId = Integer.parseInt(id.trim());
-
+/*
         try{
             System.out.println("Enter Customer ID: ");
             int custID = Integer.parseInt(scanner.nextLine());
@@ -106,6 +106,8 @@ public class Server extends Thread{
         catch(Exception e){
             System.out.println(e);
         }
+
+ */
     }
 
 

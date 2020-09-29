@@ -65,9 +65,9 @@ public class Client {
 
     public static void View(String role1) throws Exception{
         System.out.println("[ " + role1 + " ]");
-        int privilege =0;
+        int privilege =1;
         if (role1.equalsIgnoreCase("SALES")){
-            privilege =1;
+            privilege =2;
         }
         int opt =0;
         do{
@@ -84,7 +84,7 @@ public class Client {
             switch(opt){
                 case 1: Database.displayModels();
                     break;
-                case 2: if (privilege == 1){
+                case 2: if (privilege == 2){
                     System.out.println("Access denied : Only Admin can add a product!");
                 }
                 else{
@@ -96,7 +96,7 @@ public class Client {
                     Database.addDiscount();
 
                     break;
-                case 4: if (privilege == 1){
+                case 4: if (privilege == 2){
                     System.out.println("Access denied : Only Admin can add a product!");
                 }
                 else{
