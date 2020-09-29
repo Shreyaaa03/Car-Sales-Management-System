@@ -1,10 +1,7 @@
-
 import java.io.*;
-import java.net.Socket;
-import java.net.SocketException;
+import java.net.*;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Lock;
+
 
 public class Server extends Thread{
 
@@ -35,17 +32,19 @@ public class Server extends Thread{
 
                 login();
 
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            finally{
-                System.out.println("Closed: "+clientSocket.getInetAddress()+":"+port);
-                try {
-                    clientSocket.close();
-                }catch (IOException e){
-                    System.out.println(e);
-                }
-            }
+           // finally{
+               // System.out.println("Closed: "+clientSocket.getInetAddress()+":"+port);
+             //   try {
+               //     System.out.println("Closed: "+clientSocket.getInetAddress()+":"+port);
+                 //   clientSocket.close();
+               // }catch (IOException e){
+             //       System.out.println(e);
+               // }
+           // }
 
         }
 
@@ -84,7 +83,32 @@ public class Server extends Thread{
             catch(Exception e){
                 System.out.println(e);
             }
-
         }
+
+    public synchronized void buy() throws Exception{
+        System.out.println("Port: "+ port+ " -- Purchase:");
+        String id = dataInputStream.readUTF();
+        int modelId = Integer.parseInt(id.trim());
+
+        try{
+            System.out.println("Enter Customer ID: ");
+            int custID = Integer.parseInt(scanner.nextLine());
+            System.out.println("Enter Customer Name: ");
+            String custName = scanner.nextLine();
+            int transactionID = Database.Customers(custID, modelId, custName);
+            System.out.println("Transaction ID: " + transactionID + "\tCustomer ID: "+ custID);
+        }
+
+            //dataOutputStream.writeUTF();
+          //  dataOutputStream.flush();
+
+
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }
+
+
+
 
 }

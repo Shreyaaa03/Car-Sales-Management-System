@@ -133,10 +133,9 @@ public class Database {
         }
     }
 
-    public static void feedback(){
+    public static void feedback(int ch){
         try{
-            System.out.println("\n1. Display feedback \t2. Add a feedback");
-            int ch = Integer.parseInt(sc.nextLine());
+
             Statement stmt = con.createStatement();
             if (ch == 2 ){
                 System.out.println("Customer ID: ");
@@ -171,10 +170,8 @@ public class Database {
         }
     }
 
-    public static void purchase(){
+    public static void purchase(int mId){
         try{
-            System.out.println("Enter model id: ");
-            int mId = Integer.parseInt(sc.nextLine());
             Statement stmt = con.createStatement();
             String query1 = "update models set quantity = quantity - 1 where id = '"+mId+"' and quantity>0;";
             String query2 = "update stocks set outQty = outQty + 1 where model_id = '"+mId+"' and inQty-outQty > 0;";
@@ -188,11 +185,13 @@ public class Database {
                     stmt.executeUpdate(query1);
                     stmt.executeUpdate(query2);
                     System.out.println("Thank you for the payment!");
+
                 }
                 else{
                     System.out.println("Payment cancelled.");
                 }
             }
+
 
         } catch (Exception e){
             System.out.println(e);
@@ -212,6 +211,26 @@ public class Database {
         }catch (Exception e){
             System.out.print(e);
         }
+    }
+
+    public static int Customers(int cId, int mId, String name){
+        int transID =0;
+        try{
+            String query ="insert into customers (cust_id, model_id, custName) values ('"+cId+"', '"+mId+"', '"+name+"');";
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            System.out.println("Inserted!");
+            String query1 = "select * from customers where cust_id= '"+cId+"';";
+            ResultSet rs = stmt.executeQuery(query1);
+            while (rs.next()){
+                transID = rs.getInt(1);
+                System.out.println("Transaction ID : " +rs.getString(1)+"\tCustomerID"+rs.getString(2));
+            }
+
+        }catch (Exception e){
+            System.out.print(e);
+        }
+        return transID;
     }
 
 

@@ -106,9 +106,15 @@ public class Client {
                 case 5: Database.search();
                     break;
                 case 6:
-                    Database.purchase();
+                    System.out.println("Enter model id: ");
+                    int mId = sc.nextInt();
+                    Database.purchase(mId);
+                    out.writeUTF(mId + "\n");
+
                     break;
-                case 7: Database.feedback();
+                case 7: System.out.println("\n1. Display feedback \t2. Add a feedback");
+                    int ch = Integer.parseInt(sc.nextLine());
+                    Database.feedback(ch);
                     break;
                 case 8: Database.topModels();
                     break;
