@@ -159,6 +159,7 @@ public class Database {
                 String query = "insert into customer_feedback"
                         +" values('"+custid+"','"+custname+"','"+agent+"','"+rate1+"','"+rate2+"', '"+complaints1+"', '"+feedback1+"'); ";
                 stmt.executeUpdate(query);
+                System.out.println("Thank you for your feedback!");
             }
             else if (ch == 1){
                 String query2 = "select * from customer_feedback";
@@ -236,6 +237,6 @@ public class Database {
         }
 
     }
-
+    
 
 }
