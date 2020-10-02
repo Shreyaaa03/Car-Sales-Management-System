@@ -109,11 +109,12 @@ public class Client {
                     System.out.println("Enter model id: ");
                     int mId = sc.nextInt();
                     Database.purchase(mId);
-                    out.writeUTF(mId + "\n");
+                    //out.writeUTF(mId + "\n");
+                    Server.buy(mId);
 
                     break;
                 case 7: System.out.println("\n1. Display feedback \t2. Add a feedback");
-                    int ch = Integer.parseInt(sc.nextLine());
+                    int ch = sc.nextInt();
                     Database.feedback(ch);
                     break;
                 case 8: Database.topModels();

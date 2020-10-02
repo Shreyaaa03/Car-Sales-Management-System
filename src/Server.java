@@ -5,12 +5,12 @@ import java.util.Scanner;
 
 public class Server extends Thread{
 
-        public Scanner scanner = new Scanner(System.in);
+        public static Scanner scanner = new Scanner(System.in);
 
-        private DataOutputStream dataOutputStream = null;
-        private DataInputStream dataInputStream = null;
-        private ObjectOutputStream objectOutputStream = null;
-        private ObjectInputStream objectInputStream = null;
+        private static DataOutputStream dataOutputStream = null;
+        private static DataInputStream dataInputStream = null;
+        private static ObjectOutputStream objectOutputStream = null;
+        private static ObjectInputStream objectInputStream = null;
         private Socket clientSocket = null;
 
 
@@ -85,18 +85,20 @@ public class Server extends Thread{
             }
         }
 
-    public synchronized void buy() throws Exception{
-        System.out.println("Port: "+ port+ " -- Purchase:");
-        String id = dataInputStream.readUTF();
-        int modelId = Integer.parseInt(id.trim());
-/*
+    public static synchronized void buy(int modelId) {
+       //System.out.println("Port: "+ port+ " -- Purchase:");
+        //String id = dataInputStream.readUTF();
+      //  int modelId = Integer.parseInt(id.trim());
+
+     //   System.out.println( " -- Purchase:");
+
         try{
             System.out.println("Enter Customer ID: ");
             int custID = Integer.parseInt(scanner.nextLine());
             System.out.println("Enter Customer Name: ");
             String custName = scanner.nextLine();
             int transactionID = Database.Customers(custID, modelId, custName);
-            System.out.println("Transaction ID: " + transactionID + "\tCustomer ID: "+ custID);
+            //System.out.println("Transaction ID: " + transactionID + "\tCustomer ID: "+ custID);
         }
 
             //dataOutputStream.writeUTF();
@@ -107,9 +109,8 @@ public class Server extends Thread{
             System.out.println(e);
         }
 
- */
-    }
 
+    }
 
 
 

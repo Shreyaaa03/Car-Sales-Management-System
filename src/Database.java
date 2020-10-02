@@ -224,7 +224,7 @@ public class Database {
             ResultSet rs = stmt.executeQuery(query1);
             while (rs.next()){
                 transactionID = rs.getInt(1);
-                System.out.println("Transaction ID : " +rs.getString(1)+"\tCustomerID"+rs.getString(2));
+                System.out.println("Transaction ID : " +rs.getString(1)+"\tCustomerID: "+rs.getString(2));
             }
 
         }catch (Exception e){
