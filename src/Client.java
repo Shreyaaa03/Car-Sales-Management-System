@@ -107,10 +107,10 @@ public class Client {
                     break;
                 case 6:
                     System.out.println("Enter model id: ");
-                    int mId = sc.nextInt();
-                    Database.purchase(mId);
+                    int modelId = sc.nextInt();
+                    Database.purchase(modelId);
                     //out.writeUTF(mId + "\n");
-                    Server.buy(mId);
+                   // Server.buy(modelId);
 
                     break;
                 case 7: System.out.println("\n1. Display feedback \t2. Add a feedback");

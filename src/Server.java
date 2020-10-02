@@ -97,13 +97,9 @@ public class Server extends Thread{
             int custID = Integer.parseInt(scanner.nextLine());
             System.out.println("Enter Customer Name: ");
             String custName = scanner.nextLine();
-            int transactionID = Database.Customers(custID, modelId, custName);
-            //System.out.println("Transaction ID: " + transactionID + "\tCustomer ID: "+ custID);
+            Database.Customers(custID, modelId, custName);
+
         }
-
-            //dataOutputStream.writeUTF();
-          //  dataOutputStream.flush();
-
 
         catch(Exception e){
             System.out.println(e);
