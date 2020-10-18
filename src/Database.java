@@ -219,7 +219,6 @@ public class Database {
     }
 
     public static void Customers(int cId, int mId, String name){
-      //  int transactionID =0;
         try{
             String query ="insert into customers (cust_id, model_id, custName) values ('"+cId+"', '"+mId+"', '"+name+"');";
             Statement stmt = con.createStatement();
@@ -228,7 +227,6 @@ public class Database {
             String query1 = "select * from customers where cust_id= '"+cId+"';";
             ResultSet rs = stmt.executeQuery(query1);
             while (rs.next()){
-                //transactionID = rs.getInt(1);
                 System.out.println("Transaction ID : " +rs.getString(1)+"\tCustomerID: "+rs.getString(2));
             }
 
@@ -237,6 +235,6 @@ public class Database {
         }
 
     }
-    
+
 
 }

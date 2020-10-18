@@ -13,7 +13,6 @@ public class Server extends Thread{
         private static ObjectInputStream objectInputStream = null;
         private Socket clientSocket = null;
 
-
         int port;
 
         public Server(Socket clientSocket){
@@ -36,15 +35,6 @@ public class Server extends Thread{
             } catch (Exception e) {
                 e.printStackTrace();
             }
-           // finally{
-               // System.out.println("Closed: "+clientSocket.getInetAddress()+":"+port);
-             //   try {
-               //     System.out.println("Closed: "+clientSocket.getInetAddress()+":"+port);
-                 //   clientSocket.close();
-               // }catch (IOException e){
-             //       System.out.println(e);
-               // }
-           // }
 
         }
 
@@ -55,21 +45,10 @@ public class Server extends Thread{
             System.out.println("["+port+"] username: "+username1);
             String pass = dataInputStream.readUTF();
             String password1 = pass.trim();
-            System.out.println("["+port+"] password: "+ "*".repeat(password1.length()));
+            System.out.println("["+port+"] password: "+ password1+ "*".repeat(password1.length()));
             try{
                 String check = "";
-                //Class.forName("com.mysql.cj.jdbc.Driver");
-                //Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carsale","root","password");
-                //Statement stmt = con.createStatement();
-                //String query = "select * from user_master where username = '"+username1+"' and password = '"+password1+"' ;";
-                //ResultSet rs = stmt.executeQuery(query);
-                //System.out.println("ResultSet = " + rs.getString(4));
                 check = Database.verifyLogin(username1, password1);
-                //while (rs.next()){
-                   // System.out.println("Login Successful!");
-                 //   check = rs.getString(4);
-
-                //}
                 if (check.length() == 0){
                     System.out.println("Failed!");
                 }
@@ -86,11 +65,6 @@ public class Server extends Thread{
         }
 
     public static synchronized void buy(int modelId) {
-       //System.out.println("Port: "+ port+ " -- Purchase:");
-        //String id = dataInputStream.readUTF();
-      //  int modelId = Integer.parseInt(id.trim());
-
-     //   System.out.println( " -- Purchase:");
 
         try{
             System.out.println("Enter Customer ID: ");
@@ -107,7 +81,5 @@ public class Server extends Thread{
 
 
     }
-
-
 
 }

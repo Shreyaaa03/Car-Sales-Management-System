@@ -1,27 +1,55 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.InputMethodEvent;
+import java.awt.event.InputMethodListener;
 import java.net.*;
 import java.io.*;
 import java.util.Scanner;
+import javax.swing.*;
 
 public class Client {
 
     private static DataOutputStream out = null;
     private static DataInputStream in = null;
     private static Scanner sc = new Scanner(System.in);
+    private JPanel panel1;
+    private  JTextField textField1;
+    private  JPasswordField passwordField1;
+    private  JButton loginButton;
+    private JLabel msg;
 
-    public static void main(String[] args) {
-        try {
-            Socket client = new Socket("localhost", 8901);
-            System.out.println("Connected: " + client.getInetAddress() + " : " + client.getPort());
-            out = new DataOutputStream(client.getOutputStream());
-            in = new DataInputStream(client.getInputStream());
-            welcome();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+    static String username;
+    static char[] password;
+    static String role;
+
+
+    public Client() {
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                username = textField1.getText();
+                password = passwordField1.getPassword();
+                credentials();
+            }
+        });
     }
 
-    public static void welcome(){
+
+
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Client");
+        frame.setContentPane(new Client().panel1);
+
+
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+
+    }
+
+    /*public static void welcome(){
         System.out.println("-- WELCOME --");
         int option;
         boolean run = true;
@@ -61,6 +89,33 @@ public class Client {
             System.out.println(e);
         }
 
+    }
+
+     */
+
+    public void credentials(){
+        try {
+            Socket client = new Socket("localhost", 8901);
+            //System.out.println("Connected: " + client.getInetAddress() + " : " + client.getPort());
+            out = new DataOutputStream(client.getOutputStream());
+            in = new DataInputStream(client.getInputStream());
+
+            out.writeUTF(username + "\n");
+            out.writeUTF(String.valueOf(password) + "\n");
+            String temp_role = in.readUTF();
+            role = temp_role.trim();
+            if (role.equalsIgnoreCase("sales") || role.equalsIgnoreCase("admin") ) {
+                //JOptionPane.showMessageDialog(null,"Login Successful!");
+                //View(role);
+
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Wrong username or password. Try again!");
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     public static void View(String role1) throws Exception{
