@@ -20,7 +20,7 @@ public class Client {
 
     static String username;
     static char[] password;
-    static String role;
+    public static String role;
 
 
     public Client() {
@@ -30,13 +30,10 @@ public class Client {
                 username = textField1.getText();
                 password = passwordField1.getPassword();
                 role = credentials();
-                if (role.equalsIgnoreCase("sales")) {
+                if ((role.equalsIgnoreCase("sales")) || (role.equalsIgnoreCase("admin"))) {
                     panel1.setVisible(false);
-                    Sales.main();
+                    Sales.main(role);
                 }
-               //else if (role.equalsIgnoreCase("admin")){
-
-               // }
                else{
                    JOptionPane.showMessageDialog(null, "Wrong username or password. Try again!");
                 }
@@ -53,8 +50,6 @@ public class Client {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-
-
     }
 
 
@@ -77,69 +72,5 @@ public class Client {
         }
         return "";
     }
-
-    /*
-    public static void View(String role1) throws Exception{
-        System.out.println("[ " + role1 + " ]");
-        int privilege =1;
-        if (role1.equalsIgnoreCase("SALES")){
-            privilege =2;
-        }
-        int opt =0;
-        do{
-            System.out.println("\n1. Show available models");
-            System.out.println("2. Add a product");
-            System.out.println("3. Modify the database");
-            System.out.println("4. Remove a product");
-            System.out.println("5. Search for a model");
-            System.out.println("6. Purchase");
-            System.out.println("7. View or Add Feedback from Customer");
-            System.out.println("8. Display top 5 models ");
-            System.out.println("9. Exit");
-            opt = sc.nextInt();
-            switch(opt){
-                case 1: Database.displayModels();
-                    break;
-                case 2: if (privilege == 2){
-                    System.out.println("Access denied : Only Admin can add a product!");
-                }
-                else{
-                    Database.addProduct();
-                    Database.addDiscount();
-                }
-                    break;
-                case 3:
-                    Database.addDiscount();
-
-                    break;
-                case 4: if (privilege == 2){
-                    System.out.println("Access denied : Only Admin can add a product!");
-                }
-                else{
-                    Database.remove();
-                }
-                    break;
-                case 5: Database.search();
-                    break;
-                case 6:
-                    System.out.println("Enter model id: ");
-                    int modelId = sc.nextInt();
-                    Database.purchase(modelId);
-
-                    break;
-                case 7: System.out.println("\n1. Display feedback \t2. Add a feedback");
-                    int ch = sc.nextInt();
-                    Database.feedback(ch);
-                    break;
-                case 8: Database.topModels();
-                    break;
-
-            }
-
-        } while (opt != 9);
-
-    }
-
-     */
 
 }

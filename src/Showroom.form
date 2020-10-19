@@ -11,7 +11,7 @@
     <children>
       <component id="d05fe" class="javax.swing.JLabel">
         <constraints>
-          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag top="0" left="0" bottom="10" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -22,7 +22,7 @@
       </component>
       <component id="2470c" class="javax.swing.JComboBox" binding="availableModels">
         <constraints>
-          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -36,7 +36,7 @@
       </component>
       <component id="5cb60" class="javax.swing.JLabel">
         <constraints>
-          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag top="10" left="0" bottom="15" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -46,12 +46,14 @@
       </component>
       <component id="e7ef8" class="javax.swing.JTextArea" binding="specs">
         <constraints>
-          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <rows value="3"/>
+        </properties>
       </component>
       <component id="87093" class="javax.swing.JLabel">
         <constraints>
@@ -63,19 +65,10 @@
           <text value="WELCOME"/>
         </properties>
       </component>
-      <component id="18f98" class="javax.swing.JRadioButton" binding="AddFeedback">
-        <constraints>
-          <grid row="3" column="3" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <text value="Feedback"/>
-        </properties>
-      </component>
       <component id="c56e3" class="javax.swing.JButton" binding="PurchaseButton">
         <constraints>
-          <grid row="8" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag top="10" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag top="10" left="0" bottom="10" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <margin top="0" left="0" bottom="0" right="0"/>
@@ -84,12 +77,61 @@
       </component>
       <component id="6c248" class="javax.swing.JRadioButton" binding="topModelsRadioButton" default-binding="true">
         <constraints>
-          <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="20" right="0" weightx="0.0" weighty="0.0"/>
+          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="10" left="0" bottom="10" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <preferredSize width="100" height="20"/>
           <text value="Top Models"/>
+        </properties>
+      </component>
+      <component id="18f98" class="javax.swing.JRadioButton" binding="AddFeedback">
+        <constraints>
+          <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="10" left="0" bottom="10" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Feedback"/>
+        </properties>
+      </component>
+      <component id="4097b" class="javax.swing.JRadioButton" binding="addAProductRadioButton" default-binding="true">
+        <constraints>
+          <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="10" left="0" bottom="10" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+          <text value="Add a Product"/>
+        </properties>
+      </component>
+      <component id="174d7" class="javax.swing.JRadioButton" binding="removeAProductRadioButton" default-binding="true">
+        <constraints>
+          <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="10" left="0" bottom="10" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+          <text value="Remove a product"/>
+        </properties>
+      </component>
+      <component id="3f975" class="javax.swing.JButton" binding="exitButton" default-binding="true">
+        <constraints>
+          <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag top="10" left="0" bottom="10" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Exit"/>
+        </properties>
+      </component>
+      <component id="1ee9f" class="javax.swing.JTextArea" binding="topModels">
+        <constraints>
+          <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="50"/>
+          </grid>
+          <gridbag top="10" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <rows value="3"/>
         </properties>
       </component>
     </children>

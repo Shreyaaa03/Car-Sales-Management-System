@@ -4,7 +4,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
-
+import java.util.Vector;
 
 public class Database {
     static Connection con = null;
@@ -193,19 +193,22 @@ public class Database {
         }
     }
 
-    public static void topModels(){
+    public static Vector<String> topModels(){
+        String answer = "";
+        Vector<String> result = new Vector();
         try{
             String query ="select model_id, model_name, outQty from stocks s, models m where s.model_id=m.id order by outQty desc limit 5;";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
-            System.out.println("Model ID\tName\t\t\tOrders");
             while (rs.next()){
-                System.out.println(rs.getString(1)+"\t\t"+rs.getString(2)+"\t\t"+rs.getString(3));
+               answer = ("\n"+rs.getString(1)+"\t"+rs.getString(2)+"\t"+rs.getString(3));
+               result.add(answer);
             }
 
         }catch (Exception e){
             System.out.print(e);
         }
+        return result;
     }
 
     public static void Customers(int cId, int mId, String name){
