@@ -1,5 +1,10 @@
-import java.sql.*;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Scanner;
+
 
 public class Database {
     static Connection con = null;
@@ -13,6 +18,7 @@ public class Database {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url, username, password);
+
         } catch(Exception e){
             System.out.println(e);
         }
@@ -32,21 +38,6 @@ public class Database {
         catch(Exception e){
             System.out.println(e);
             return "";
-        }
-    }
-
-    public static void displayModels(){
-        try{
-            System.out.println("\n-- AVAILABLE MODELS --");
-            Statement stmt = con.createStatement();
-            String query = "select model_name from models";
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()){
-                System.out.println(rs.getString(1));
-            }
-
-        } catch (Exception e){
-            System.out.println(e);
         }
     }
 
@@ -113,24 +104,23 @@ public class Database {
         }
     }
 
-    public static void search(){
+    public static String search(String name){
+        String answer = "";
         try{
-            System.out.println("Enter the model name : ");
-            String name = sc.nextLine();
             Statement stmt = con.createStatement();
             String query = "select * from models where model_name = '"+name+"';";
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()){
-                System.out.println("Model ID: "+rs.getString(1)+"\tModel Name: "+rs.getString(2)
-                +"\nManufacturer: "+rs.getString(3)+"\tPrice: "+rs.getString(5)
+                answer = "Model ID: "+rs.getString(1)+"\nModel Name: "+rs.getString(2)
+                +"\nManufacturer: "+rs.getString(3)+"\nPrice: "+rs.getString(5)
                 +"\nColours: "+rs.getString(6)+"\nYear of Production: "+rs.getString(7)
-                +"\tSeating Capacity: "+rs.getString(8)+"\nTransmission: "+rs.getString(9)
-                +"\tMileage: "+rs.getString(10));
+                +"\nSeating Capacity: "+rs.getString(8)+"\nTransmission: "+rs.getString(9)
+                +"\nMileage: "+rs.getString(10);
             }
-
         }catch(Exception e){
             System.out.println(e);
         }
+        return answer;
     }
 
     public static void feedback(int ch){

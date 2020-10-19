@@ -15,7 +15,7 @@ public class Client {
     private JPanel panel1;
     private  JTextField textField1;
     private  JPasswordField passwordField1;
-    private  JButton loginButton;
+    private JButton loginButton;
     private JLabel msg;
 
     static String username;
@@ -29,74 +29,38 @@ public class Client {
             public void actionPerformed(ActionEvent e) {
                 username = textField1.getText();
                 password = passwordField1.getPassword();
-                credentials();
+                role = credentials();
+                if (role.equalsIgnoreCase("sales")) {
+                    panel1.setVisible(false);
+                    Sales.main();
+                }
+               //else if (role.equalsIgnoreCase("admin")){
+
+               // }
+               else{
+                   JOptionPane.showMessageDialog(null, "Wrong username or password. Try again!");
+                }
+
             }
         });
+
     }
-
-
 
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Client");
         frame.setContentPane(new Client().panel1);
-
-
-
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
 
-    }
-
-    /*public static void welcome(){
-        System.out.println("-- WELCOME --");
-        int option;
-        boolean run = true;
-
-        try {
-            while (run) {
-                System.out.println("1. Login \n2. Exit");
-                option = sc.nextInt();
-                switch (option){
-                    case 1: System.out.println("\nEnter the username: ");
-                        String username = sc.next();
-                        out.writeUTF(username + "\n");
-
-                        System.out.println("\nEnter the password: ");
-                        String pass = sc.next();
-                        out.writeUTF(pass + "\n");
-
-                        String temp_role = in.readUTF();
-                        String role = temp_role.trim();
-                        if (role.equalsIgnoreCase("sales") || role.equalsIgnoreCase("admin") ) {
-                            System.out.println("Login Successful!");
-                            View(role);
-                        }
-                        else {
-                            System.out.println("Wrong username or password. Try again!");
-                        }
-                        break;
-                    case 2: run = false;
-                        System.out.println("Thank you! Have a nice day!");
-                        break;
-                    default: System.out.println("Invalid Option");
-                }
-
-            }
-        }
-        catch (Exception e){
-            System.out.println(e);
-        }
 
     }
 
-     */
 
-    public void credentials(){
+    public String credentials(){
         try {
             Socket client = new Socket("localhost", 8901);
-            //System.out.println("Connected: " + client.getInetAddress() + " : " + client.getPort());
             out = new DataOutputStream(client.getOutputStream());
             in = new DataInputStream(client.getInputStream());
 
@@ -105,19 +69,16 @@ public class Client {
             String temp_role = in.readUTF();
             role = temp_role.trim();
             if (role.equalsIgnoreCase("sales") || role.equalsIgnoreCase("admin") ) {
-                //JOptionPane.showMessageDialog(null,"Login Successful!");
-                //View(role);
-
-            }
-            else {
-                JOptionPane.showMessageDialog(null, "Wrong username or password. Try again!");
+                return role;
             }
         }
         catch(Exception e){
             e.printStackTrace();
         }
+        return "";
     }
 
+    /*
     public static void View(String role1) throws Exception{
         System.out.println("[ " + role1 + " ]");
         int privilege =1;
@@ -178,5 +139,7 @@ public class Client {
         } while (opt != 9);
 
     }
+
+     */
 
 }
