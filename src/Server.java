@@ -64,7 +64,7 @@ public class Server extends Thread{
             }
         }
 
-    public static synchronized void buy(int modelId) {
+   /* public static synchronized void buy(int modelId) {
 
         try{
             System.out.println("Enter Customer ID: ");
@@ -79,7 +79,8 @@ public class Server extends Thread{
             System.out.println(e);
         }
 
-
     }
+
+    */
 
 }

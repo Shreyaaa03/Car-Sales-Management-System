@@ -6,7 +6,7 @@
     </constraints>
     <properties>
       <opaque value="true"/>
-      <preferredSize width="400" height="400"/>
+      <preferredSize width="450" height="450"/>
     </properties>
     <border type="none"/>
     <children>
@@ -17,7 +17,9 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <preferredSize width="50" height="40"/>
+        </properties>
       </component>
       <component id="c179" class="javax.swing.JLabel">
         <constraints>
@@ -35,14 +37,17 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <preferredSize width="50" height="40"/>
+        </properties>
       </component>
       <component id="62ce6" class="javax.swing.JButton" binding="loginButton" default-binding="true">
         <constraints>
-          <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag top="20" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+          <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="20" left="25" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <preferredSize width="80" height="40"/>
           <text value="Login"/>
         </properties>
       </component>
@@ -103,15 +108,6 @@
         <properties>
           <font size="16"/>
           <text value="World Motors LLC"/>
-        </properties>
-      </component>
-      <component id="42c67" class="javax.swing.JLabel" binding="msg">
-        <constraints>
-          <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="15" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <text value="  "/>
         </properties>
       </component>
     </children>

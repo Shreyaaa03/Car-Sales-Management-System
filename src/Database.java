@@ -41,28 +41,15 @@ public class Database {
         }
     }
 
-    public static void addProduct(){
+    public static void addProduct(int id, String name, String manu, int qty, double price){
         try{
-            System.out.println("\nEnter the details :");
-            System.out.println("Model ID: ");
-            int id = Integer.parseInt(sc.nextLine());
-            System.out.println("Model Name: ");
-            String name = sc.nextLine();
-            System.out.println("Manufacturer Name: ");
-            String manu = sc.nextLine();
-            System.out.println("Quantity: ");
-            int qty = Integer.parseInt(sc.nextLine());
-            System.out.println("Price: ");
-            double price = Double.parseDouble(sc.nextLine());
-
             Statement stmt = con.createStatement();
             String query = "insert into models (id, model_name, manufacturer, quantity, price)"
                     +" values('"+id+"','"+name+"','"+manu+"','"+qty+"','"+price+"'); ";
             stmt.executeUpdate(query);
             String query1 = "insert into stocks (model_id, inQty, outQty) values( '"+id+"', '"+qty+"', 0);";
             stmt.executeUpdate(query1);
-
-            System.out.println("Inserted!");
+            addDiscount();
 
         } catch (Exception e){
             System.out.println(e);
@@ -76,32 +63,27 @@ public class Database {
             String query1 = "update models set new_price = price - 0.0 where price < 140.0;";
             stmt.executeUpdate(query);
             stmt.executeUpdate(query1);
-            String query2 = "select model_name, price, new_price from models";
-            ResultSet rs = stmt.executeQuery(query2);
-            while (rs.next()){
-                System.out.println("Model: "+rs.getString(1) + "\tPrice: "+ rs.getString(2) + "\tAfter Discount: "+ rs.getString(3));
-            }
+
         }catch(Exception e){
             System.out.println(e);
         }
     }
 
-    public static void remove(){
+    public static String remove(int model_id){
+        String name = "";
         try{
-            System.out.println("Enter the model id : ");
-            int model_id = Integer.parseInt(sc.nextLine());
             Statement stmt = con.createStatement();
+            String query1 = "select model_name from models where id = '"+model_id+"';";
             String query = "delete from models where id ='"+model_id+"';";
-            stmt.executeUpdate(query);
-            String query2 = "select id, model_name from models";
-            ResultSet rs = stmt.executeQuery(query2);
-            while (rs.next()){
-                System.out.println("Model ID: "+rs.getString(1)+"\tModel Name: "+rs.getString(2));
+            ResultSet rs = stmt.executeQuery(query1);
+            while (rs.next()) {
+                name = rs.getString(1);
             }
-
+            stmt.executeUpdate(query);
         }catch(Exception e){
             System.out.println(e);
         }
+        return name;
     }
 
     public static String search(String name){
@@ -116,6 +98,21 @@ public class Database {
                 +"\nColours: "+rs.getString(6)+"\nYear of Production: "+rs.getString(7)
                 +"\nSeating Capacity: "+rs.getString(8)+"\nTransmission: "+rs.getString(9)
                 +"\nMileage: "+rs.getString(10);
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return answer;
+    }
+
+    public static int getId(String name){
+        int answer = 0;
+        try{
+            Statement stmt = con.createStatement();
+            String query = "select * from models where model_name = '"+name+"';";
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()){
+                answer = rs.getInt(1);
             }
         }catch(Exception e){
             System.out.println(e);
@@ -164,7 +161,8 @@ public class Database {
         }
     }
 
-    public static void purchase(int mId){
+    public static double purchase(int mId){
+        double price = 0;
         try{
             Statement stmt = con.createStatement();
             String query1 = "update models set quantity = quantity - 1 where id = '"+mId+"' and quantity>0;";
@@ -172,25 +170,15 @@ public class Database {
             String query3 = "select model_name, new_price from models where id = '"+mId+"';";
             ResultSet rs = stmt.executeQuery(query3);
             if (rs.next()){
-                System.out.println("Model : "+rs.getString(1)+"\nTotal Price = "+rs.getString(2));
-                System.out.println("Confirm the payment - ");
-                String payment = sc.nextLine();
-                if (payment.equalsIgnoreCase("y") || payment.equalsIgnoreCase("yes")){
+                price =rs.getDouble(2);
                     stmt.executeUpdate(query1);
                     stmt.executeUpdate(query2);
-                    System.out.println("Thank you for the payment!");
-                    Server.buy(mId);
-
-                }
-                else{
-                    System.out.println("Payment cancelled.");
-                }
             }
-
 
         } catch (Exception e){
             System.out.println(e);
         }
+        return price;
     }
 
     public static Vector<String> topModels(){

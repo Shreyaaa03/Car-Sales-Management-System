@@ -1,7 +1,5 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.InputMethodEvent;
-import java.awt.event.InputMethodListener;
 import java.net.*;
 import java.io.*;
 import java.util.Scanner;
@@ -16,7 +14,6 @@ public class Client {
     private  JTextField textField1;
     private  JPasswordField passwordField1;
     private JButton loginButton;
-    private JLabel msg;
 
     static String username;
     static char[] password;
