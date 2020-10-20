@@ -31,26 +31,25 @@ public class Sales {
 
         JLabel hl = new JLabel("",JLabel.CENTER );
 
-
-       // JLabel label3 = new JLabel("Models", JLabel.LEFT);
-       // JLabel label4 = new JLabel("Description", JLabel.LEFT);
-
         String[] models = {"Models","Audi A8", "Range Rover", "Land Cruiser"};
 
         availableModels = new JComboBox(models);
         availableModels.setSize(100, 50);
 
+        specs = new JTextArea(100,100);
+        //specs.setMinimumSize(new Dimension(100, 200));
+        specs.setSize(100, 400);
+        //JScrollPane scroll = new JScrollPane(specs);
+        //scroll.setSize( 150, 100 );
+        //specs.setSize(100,300);
+        //specs.resize(150, 300);
+        //specs.setBounds(50,50,150,300);
 
-        specs = new JTextArea(100,7);
-        JScrollPane scroll = new JScrollPane(specs);
-        scroll.setSize( 150, 70 );
-
-        topModels = new JTextArea(20,4);
-        JScrollPane scroll1 = new JScrollPane(topModels);
-       scroll1.setSize( 150, 50 );
-       // specs.setEditable(false);
-       // specs.setEnabled(true);
-
+        topModels = new JTextArea(100,100);
+        //topModels.setSize(100, 200);
+        //JScrollPane scroll1 = new JScrollPane(topModels);
+        //scroll1.setSize( 150, 100 );
+        
 
         ButtonGroup G = new ButtonGroup();
         addAProductRadioButton = new JRadioButton("Add a Product");
@@ -74,8 +73,8 @@ public class Sales {
         salesPanel.add(hl,BorderLayout.NORTH);
        // salesPanel.add(hl,BorderLayout.WEST);
 
-        salesPanel.add(availableModels,BorderLayout.WEST);
-        salesPanel.add(scroll,BorderLayout.WEST);
+        salesPanel.add(availableModels,BorderLayout.EAST);
+        salesPanel.add(specs,BorderLayout.WEST);
         salesPanel.add(hl,BorderLayout.WEST);
 
         salesPanel.add(addAProductRadioButton,BorderLayout.EAST);
@@ -83,7 +82,7 @@ public class Sales {
         salesPanel.add(AddFeedback,BorderLayout.EAST);
         salesPanel.add(topModelsRadioButton,BorderLayout.EAST);
        // salesPanel.add(hl,BorderLayout.EAST);
-        salesPanel.add(scroll1,BorderLayout.EAST);
+        salesPanel.add(topModels,BorderLayout.EAST);
        // salesPanel.add(hl,BorderLayout.EAST);
 
         salesPanel.add(hl,BorderLayout.SOUTH);
@@ -98,6 +97,7 @@ public class Sales {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        frame.pack();
 
         if (user.equalsIgnoreCase("sales")){
             addAProductRadioButton.setVisible(false);
