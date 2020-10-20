@@ -22,6 +22,83 @@ public class Sales {
 
 
     public Sales() {
+
+        JFrame frame = new JFrame("Showroom");
+
+        salesPanel = new JPanel(new GridLayout(10,2,10,10));
+
+        JLabel label1 = new JLabel("WELCOME", SwingConstants.CENTER);
+
+        JLabel hl = new JLabel("",JLabel.CENTER );
+
+
+       // JLabel label3 = new JLabel("Models", JLabel.LEFT);
+       // JLabel label4 = new JLabel("Description", JLabel.LEFT);
+
+        String[] models = {"Models","Audi A8", "Range Rover", "Land Cruiser"};
+
+        availableModels = new JComboBox(models);
+        availableModels.setSize(100, 50);
+
+
+        specs = new JTextArea(100,7);
+        JScrollPane scroll = new JScrollPane(specs);
+        scroll.setSize( 150, 70 );
+
+        topModels = new JTextArea(20,4);
+        JScrollPane scroll1 = new JScrollPane(topModels);
+       scroll1.setSize( 150, 50 );
+       // specs.setEditable(false);
+       // specs.setEnabled(true);
+
+
+        ButtonGroup G = new ButtonGroup();
+        addAProductRadioButton = new JRadioButton("Add a Product");
+        removeAProductRadioButton = new JRadioButton("Remove a Product");
+        AddFeedback = new JRadioButton("Feedback");
+        topModelsRadioButton = new JRadioButton("Top Models");
+        G.add(addAProductRadioButton);
+        G.add(removeAProductRadioButton);
+        G.add(AddFeedback);
+        G.add(topModelsRadioButton);
+
+        PurchaseButton = new JButton("Purchase");
+        PurchaseButton.setHorizontalAlignment(JButton.CENTER);
+
+        exitButton = new JButton("Exit");
+        exitButton.setHorizontalAlignment(JButton.CENTER);
+
+        salesPanel.add(hl,BorderLayout.NORTH);
+        salesPanel.add(label1,BorderLayout.NORTH);
+       // salesPanel.add(hl,BorderLayout.NORTH);
+        salesPanel.add(hl,BorderLayout.NORTH);
+       // salesPanel.add(hl,BorderLayout.WEST);
+
+        salesPanel.add(availableModels,BorderLayout.WEST);
+        salesPanel.add(scroll,BorderLayout.WEST);
+        salesPanel.add(hl,BorderLayout.WEST);
+
+        salesPanel.add(addAProductRadioButton,BorderLayout.EAST);
+        salesPanel.add(removeAProductRadioButton,BorderLayout.EAST);
+        salesPanel.add(AddFeedback,BorderLayout.EAST);
+        salesPanel.add(topModelsRadioButton,BorderLayout.EAST);
+       // salesPanel.add(hl,BorderLayout.EAST);
+        salesPanel.add(scroll1,BorderLayout.EAST);
+       // salesPanel.add(hl,BorderLayout.EAST);
+
+        salesPanel.add(hl,BorderLayout.SOUTH);
+        salesPanel.add(hl,BorderLayout.SOUTH);
+        salesPanel.add(PurchaseButton, BorderLayout.SOUTH);
+        salesPanel.add(hl,BorderLayout.SOUTH);
+        salesPanel.add(exitButton, BorderLayout.SOUTH);
+
+        frame.add(salesPanel);
+
+        frame.setSize(500, 400);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+
         if (user.equalsIgnoreCase("sales")){
             addAProductRadioButton.setVisible(false);
             removeAProductRadioButton.setVisible(false);
@@ -151,13 +228,7 @@ public class Sales {
 
     public static void main(String role ) {
         user = role;
-        JFrame frame = new JFrame("Sales");
-        frame.setContentPane(new Sales().salesPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-
-
+        new Sales();
 
     }
 

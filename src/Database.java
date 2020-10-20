@@ -120,6 +120,25 @@ public class Database {
         return answer;
     }
 
+    /*public static String[] findModels(){
+        String answer = "";
+        String[] result ;
+        try{
+            String query ="select model_name from models;";
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()){
+                answer = ("\n"+rs.getString(1));
+                result.add(answer);
+            }
+
+        }catch (Exception e){
+            System.out.print(e);
+        }
+        return result;
+    }
+     */
+
     public static void feedback(int ch){
         try{
 
