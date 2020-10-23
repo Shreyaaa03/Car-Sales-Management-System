@@ -69,7 +69,7 @@ public class Client {
                 role = credentials();
                 if ((role.equalsIgnoreCase("sales")) || (role.equalsIgnoreCase("admin"))) {
                     panel1.setVisible(false);
-                    Sales.main(role);
+                    Showroom.main();
                     frame.dispose();
                 }
                else{

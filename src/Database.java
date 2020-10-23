@@ -120,64 +120,33 @@ public class Database {
         return answer;
     }
 
-    /*public static String[] findModels(){
-        String answer = "";
-        String[] result ;
+    public static double findAvg(){
+        double answer = 0.0;
         try{
-            String query ="select model_name from models;";
+            String query ="select avg(Overall_Rate) from customer_feedback;";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()){
-                answer = ("\n"+rs.getString(1));
-                result.add(answer);
+                answer = rs.getDouble(1);
             }
 
         }catch (Exception e){
             System.out.print(e);
         }
-        return result;
+        return answer;
     }
-     */
 
-    public static void feedback(int ch){
+    public static int feedback(int rate1, int rate2, String complaint, String other){
         try{
-
             Statement stmt = con.createStatement();
-            if (ch == 2 ){
-                System.out.println("Customer ID: ");
-                int custid = Integer.parseInt(sc.nextLine());
-                System.out.println("Customer Name: ");
-                String custname = sc.nextLine();
-                System.out.println("Agent ID: ");
-                int agent = Integer.parseInt(sc.nextLine());
-                System.out.println("Overall Rate (5): ");
-                int rate1 = Integer.parseInt(sc.nextLine());
-                System.out.println("Assistance Rate (5): ");
-                int rate2 = Integer.parseInt(sc.nextLine());
-                System.out.println("Complaints: ");
-                String complaints1 = sc.nextLine();
-                System.out.println("Other feedback: ");
-                String feedback1 = sc.nextLine();
-
-                String query1 = "insert into customers (cust_id, custName) values ('"+custid+"', '"+custname+"');";
-                stmt.executeUpdate(query1);
-
-                String query = "insert into customer_feedback"
-                        +" values('"+custid+"','"+custname+"','"+agent+"','"+rate1+"','"+rate2+"', '"+complaints1+"', '"+feedback1+"'); ";
-                stmt.executeUpdate(query);
-                System.out.println("Thank you for your feedback!");
-            }
-            else if (ch == 1){
-                String query2 = "select * from customer_feedback";
-                ResultSet rs = stmt.executeQuery(query2);
-                while (rs.next()){
-                    System.out.println("Customer Name: "+rs.getString(2) + "\tOverall Rate (5): "+ rs.getString(4) + "\tAssistance Rate (5): "+ rs.getString(5) + "\tComplaints : "+ rs.getString(6));
-                }
-            }
+            String query = "insert into customer_feedback(Overall_Rate, Assistance_Rate, Complaints, Feedback)" +" values('"+rate1+"','"+rate2+"','"+complaint+"','"+other+"'); ";
+            stmt.executeUpdate(query);
+            return 0;
 
         }catch(Exception e){
             System.out.println(e);
         }
+        return 1;
     }
 
     public static double purchase(int mId){
@@ -217,24 +186,5 @@ public class Database {
         }
         return result;
     }
-
-    public static void Customers(int cId, int mId, String name){
-        try{
-            String query ="insert into customers (cust_id, model_id, custName) values ('"+cId+"', '"+mId+"', '"+name+"');";
-            Statement stmt = con.createStatement();
-            stmt.executeUpdate(query);
-            System.out.println("Inserted!");
-            String query1 = "select * from customers where cust_id= '"+cId+"';";
-            ResultSet rs = stmt.executeQuery(query1);
-            while (rs.next()){
-                System.out.println("Transaction ID : " +rs.getString(1)+"\tCustomerID: "+rs.getString(2));
-            }
-
-        }catch (Exception e){
-            System.out.print(e);
-        }
-
-    }
-
 
 }
