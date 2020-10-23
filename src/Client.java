@@ -23,6 +23,7 @@ public class Client {
     public Client() {
 
         JFrame frame = new JFrame("Login");
+
         panel1 = new JPanel(new GridLayout(7,7, 2, 10));
 
         JLabel label1 = new JLabel("World Motors LLC", SwingConstants.CENTER);
@@ -53,8 +54,8 @@ public class Client {
 
         panel1.add(passwordField1);
         panel1.add(loginButton);
-        frame.add(panel1);
 
+        frame.add(panel1);
         frame.setSize(300, 300);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
